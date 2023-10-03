@@ -1,0 +1,33 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nimi">Nimi:</label>
+      <input type="text" id="nimi" formControlName="nimi">
+    </div>
+    <div>
+      <label for="henkilotunnus">Henkilötunnus:</label>
+      <input type="text" id="henkilotunnus" formControlName="henkilotunnus">
+    </div>
+    <div>
+        <label for="osoitetiedot">Osoitetiedot:</label>
+        <input type="text" id="osoitetiedot" formControlName="osoitetiedot">
+      </div>
+      <div>
+        <label for="kansalaisuus">Kansalaisuus:</label>
+        <input type="text" id="kansalaisuus" formControlName="kansalaisuus">
+      </div>
+      <div>
+        <label for="aidinkieli">Äidinkieli:</label>
+        <input type="text" id="aidinkieli" formControlName="aidinkieli">
+      </div>
+      <div>
+        <label for="perhesuhdetiedot">Perhesuhdetiedot:</label>
+        <input type="text" id="perhesuhdetiedot" formControlName="perhesuhdetiedot">
+      </div>
+      <div>
+        <label for="syntymaJaKuolinTiedot">Syntymä- ja kuolintiedot:</label>
+        <input type="text" id="syntymaJaKuolinTiedot" formControlName="syntymaJaKuolinTiedot">
+      </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
