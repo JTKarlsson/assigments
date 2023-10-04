@@ -1,28 +1,44 @@
 package fi.joni.backend.controller;
 
+import fi.joni.backend.dto.HenkiloDto;
 import fi.joni.backend.model.Henkilo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import fi.joni.backend.service.HenkiloService;
+import fi.joni.backend.service.HenkiloServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/henkilo")
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ApiController {
 
-    @GetMapping("/")
+    private final HenkiloService henkiloService;
+
+
+    @Autowired
+    public ApiController(HenkiloServiceImpl henkiloServiceImpl) {
+        this.henkiloService = henkiloServiceImpl;
+    }
+
+    @GetMapping("/henkilo")
     public List<Henkilo> getDummyHenkilos() {
-        List<Henkilo> dummyHenkilos = new ArrayList<>();
+        return henkiloService.getHenkiloList();
+    }
+    @PostMapping("/henkilo")
+    public ResponseEntity<String> createHenkilo(@RequestBody HenkiloDto request) {
+        Henkilo newHenkilo = new Henkilo();
 
-        Henkilo henkilo1 = new Henkilo("John Doe", "12345", "123 Main St", "US", "English", "Single", "01/01/1980 - 12/31/2099");
-        Henkilo henkilo2 = new Henkilo("Jane Smith", "67890", "456 Elm St", "CA", "French", "Married", "02/15/1985 - 12/31/2099");
+        newHenkilo.setId(UUID.randomUUID().toString());
+        newHenkilo.setNimi(request.getNimi());
 
-        dummyHenkilos.add(henkilo1);
-        dummyHenkilos.add(henkilo2);
+        henkiloService.addHenkilo(newHenkilo);
 
-        return dummyHenkilos;
-
+        return ResponseEntity.status(HttpStatus.CREATED).body("Henkilo created successfully");
     }
 }

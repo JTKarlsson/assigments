@@ -1,6 +1,6 @@
-package fi.joni.backend.model;
+package fi.joni.backend.dto;
 
-public class Henkilo {
+public class HenkiloDto {
     private String id;
     private String nimi;
     private String henkilotunnus;
@@ -10,12 +10,10 @@ public class Henkilo {
     private String perhesuhdetiedot;
     private String syntymaJaKuolintiedot;
 
-    public Henkilo() {
-    }
+    public HenkiloDto() {}
 
-    public Henkilo(String id, String nimi, String henkilotunnus, String osoitetiedot, String kansalaisuus,
-                   String aidinkieli, String perhesuhdetiedot, String syntymaJaKuolintiedot) {
-        this.id = id;
+    public HenkiloDto( String nimi, String henkilotunnus, String osoitetiedot, String kansalaisuus,
+                      String aidinkieli, String perhesuhdetiedot, String syntymaJaKuolintiedot) {
         this.nimi = nimi;
         this.henkilotunnus = henkilotunnus;
         this.osoitetiedot = osoitetiedot;
@@ -23,6 +21,7 @@ public class Henkilo {
         this.aidinkieli = aidinkieli;
         this.perhesuhdetiedot = perhesuhdetiedot;
         this.syntymaJaKuolintiedot = syntymaJaKuolintiedot;
+
     }
 
     public String getId() {
