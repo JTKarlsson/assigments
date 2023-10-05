@@ -5,13 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HenkiloFormComponent } from './components/henkilo-form/henkilo-form.component';
-import { ReadHenkilotComponent } from './components/read-henkilot/read-henkilot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HenkiloFormComponent,
-    ReadHenkilotComponent,
   ],
   imports: [
     BrowserModule,
