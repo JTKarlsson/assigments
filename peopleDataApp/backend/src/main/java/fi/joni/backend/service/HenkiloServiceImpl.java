@@ -12,28 +12,19 @@ public class HenkiloServiceImpl implements HenkiloService {
 
     private final List<Henkilo> henkilotietoRekisteri = new ArrayList<>();
 
-    public HenkiloServiceImpl() {
-        Henkilo henkilo1 = new Henkilo("1", "John Doe", "12345", "123 Main St", "US", "English", "Single", "01/01/1980 - 12/31/2099");
-        Henkilo henkilo2 = new Henkilo("2", "Jane Smith", "67890", "456 Elm St", "CA", "French", "Married", "02/15/1985 - 12/31/2099");
-        Henkilo henkilo3 = new Henkilo("3", "Jake Black", "67890", "456 Elm St", "CA", "French", "Married", "02/15/1985 - 12/31/2099");
-
-        henkilotietoRekisteri.add(henkilo1);
-        henkilotietoRekisteri.add(henkilo2);
-        henkilotietoRekisteri.add(henkilo3);
-    }
-
     @Override
     public List<Henkilo> getHenkiloList() {
         return henkilotietoRekisteri;
     }
 
     @Override
-    public void addHenkilo(Henkilo henkilo) {
+    public Henkilo addHenkilo(Henkilo henkilo) {
         henkilotietoRekisteri.add(henkilo);
+        return henkilo;
     }
 
     @Override
-    public Henkilo updateHenkilo(String id, Henkilo updatedHenkilo) {
+    public Henkilo updateHenkilo(String id, Henkilo updatedHenkilo) throws Exception {
         Optional<Henkilo> existingHenkilo = henkilotietoRekisteri.stream()
                 .filter(henkilo -> henkilo.getId().equals(id))
                 .findFirst();
@@ -42,7 +33,8 @@ public class HenkiloServiceImpl implements HenkiloService {
             int index = henkilotietoRekisteri.indexOf(existingHenkilo.get());
             henkilotietoRekisteri.set(index, updatedHenkilo);
         } else {
-            // Henkilo not found, handle accordingly
+            //Should not happen
+            throw new Exception("Henkilo is not found");
         }
         return updatedHenkilo;
     }
@@ -51,4 +43,5 @@ public class HenkiloServiceImpl implements HenkiloService {
     public void deleteHenkilo(String id) {
         henkilotietoRekisteri.removeIf(henkilo -> henkilo.getId().equals(id));
     }
+
 }

@@ -8,9 +8,9 @@ public interface HenkiloService {
 
     List<Henkilo> getHenkiloList();
 
-    void addHenkilo(Henkilo henkilo);
+    Henkilo addHenkilo(Henkilo henkilo);
 
-    Henkilo updateHenkilo(String id, Henkilo updatedHenkilo);
+    Henkilo updateHenkilo(String id, Henkilo updatedHenkilo) throws Exception;
 
     void deleteHenkilo(String id);
 }

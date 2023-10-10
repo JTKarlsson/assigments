@@ -20,8 +20,8 @@ public class ApiController {
     private final HenkiloService henkiloService;
 
     @Autowired
-    public ApiController(HenkiloServiceImpl henkiloServiceImpl) {
-        this.henkiloService = henkiloServiceImpl;
+    public ApiController(HenkiloService henkiloService) {
+        this.henkiloService = henkiloService;
     }
 
     @GetMapping("/henkilo")
@@ -36,16 +36,16 @@ public class ApiController {
         newHenkilo.setId(UUID.randomUUID().toString());
         buildHenkiloFromRequest(request, newHenkilo);
 
-        henkiloService.addHenkilo(newHenkilo);
+        Henkilo henkiloFromService = henkiloService.addHenkilo(newHenkilo);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(newHenkilo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(henkiloFromService);
     }
 
     @DeleteMapping("/henkilo/{id}")
     public ResponseEntity<?> deleteHenkilo(@PathVariable String id) {
         try {
             henkiloService.deleteHenkilo(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -71,7 +71,7 @@ public class ApiController {
 
     private void buildHenkiloFromRequest(@RequestBody HenkiloDto request, Henkilo newHenkilo) {
         newHenkilo.setNimi(request.getNimi());
-        newHenkilo.setHenkilotunnus(request.getNimi());
+        newHenkilo.setHenkilotunnus(request.getHenkilotunnus());
         newHenkilo.setOsoitetiedot(request.getOsoitetiedot());
         newHenkilo.setKansalaisuus(request.getKansalaisuus());
         newHenkilo.setAidinkieli(request.getAidinkieli());
