@@ -22,7 +22,7 @@ export class HenkiloFormComponent implements OnInit {
       kansalaisuus: [''],
       aidinkieli: [''],
       perhesuhdetiedot: [''],
-      syntymaJaKuolinTiedot: ['']
+      syntymaJaKuolintiedot: ['']
     });
     this.editForm = this.fb.group({
       id: [],
@@ -32,7 +32,7 @@ export class HenkiloFormComponent implements OnInit {
       kansalaisuus: [''],
       aidinkieli: [''],
       perhesuhdetiedot: [''],
-      syntymaJaKuolinTiedot: ['']
+      syntymaJaKuolintiedot: ['']
     });
   }
 
@@ -58,7 +58,7 @@ export class HenkiloFormComponent implements OnInit {
       next: (response) => {
 
         console.log('Henkilo created successfully:', response);
-        this.henkiloList.push(formData);
+        this.loadHenkilos();
 
         this.myForm.reset(this.initFormValues);
       },

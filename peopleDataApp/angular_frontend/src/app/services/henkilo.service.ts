@@ -6,7 +6,8 @@ import { Observable, catchError, throwError } from 'rxjs'
   providedIn: 'root'
 })
 export class HenkiloService {
-  private apiUrl = 'http://localhost:8080/api'; // Replace with your API endpoint
+  // public for tests... maybe should use getter.. but not this time!
+  public apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
 
@@ -20,16 +21,33 @@ export class HenkiloService {
       );
   }
 
-
   getHenkilo(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/henkilo`);
+    return this.http.get<any[]>(`${this.apiUrl}/henkilo`)
+      .pipe(
+        catchError(error => {
+          console.error('Error getting HenkiloList:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   updateHenkilo(henkiloId: any, henkilo: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/henkilo/${henkiloId}`, henkilo);
+    return this.http.put(`${this.apiUrl}/henkilo/${henkiloId}`, henkilo)
+      .pipe(
+        catchError(error => {
+          console.error('Error updating Henkilo:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   deleteHenkilo(henkiloId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/henkilo/${henkiloId}`);
+    return this.http.delete<void>(`${this.apiUrl}/henkilo/${henkiloId}`)
+      .pipe(
+        catchError(error => {
+          console.error('Error deleting Henkilo:', error);
+          return throwError(() => error);
+        })
+      );
   }
 }
