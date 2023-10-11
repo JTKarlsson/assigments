@@ -31,6 +31,7 @@ public class ApiControllerTest {
     void setUp() throws Exception {
         henkiloService = Mockito.mock(HenkiloService.class);
         apiController = new ApiController(henkiloService);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -52,7 +53,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    void createHenkilo_ReturnsCreatedResponse() {
+    void createHenkilo() {
         // Arrange
         HenkiloDto request = new HenkiloDto();
         request.setNimi("Jaakko");
@@ -85,7 +86,6 @@ public class ApiControllerTest {
     @Test
     void updateHenkilo() throws Exception {
         // Arrange
-        MockitoAnnotations.openMocks(this);
         HenkiloDto request = new HenkiloDto();
         request.setId("1");
 
