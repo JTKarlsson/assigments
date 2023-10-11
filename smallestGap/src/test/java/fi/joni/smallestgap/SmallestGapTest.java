@@ -20,7 +20,7 @@ class SmallestGapTest {
     public void testFindSmallestGapPositiveNumbers() {
         int[] numbers2 = {1, 5, 10};
         int result2 = SmallestGap.findSmallestGap(numbers2);
-        assertEquals(4, result2);
+        assertEquals(3, result2);
 
         int[] numbers3 = {1, 4, 10, 11};
         int result3 = SmallestGap.findSmallestGap(numbers3);

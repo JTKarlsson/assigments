@@ -12,7 +12,7 @@ public class HenkiloDto {
 
     public HenkiloDto() {}
 
-    
+
     public HenkiloDto( String nimi, String henkilotunnus, String osoitetiedot, String kansalaisuus,
                       String aidinkieli, String perhesuhdetiedot, String syntymaJaKuolintiedot) {
         this.nimi = nimi;
