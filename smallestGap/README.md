@@ -16,3 +16,7 @@ Esimerkiksi taulukon [ 1, 4, 10 ] oikea vastaus olisi 2, sillä numeroiden 1 ja 
 • Funktion täytyy toimia samalla tavalla vaikka taulukossa olisi useampi sama numero
 
 • Funktion täytyy toimia samalla tavalla vaikka taulukossa olisi usealla numeroilla samanpituinen väli, esimerkiksi [ 1, 3, 5 ]
+
+
+## notes
+I just noticed that I did not needed feature.. negative numbers are not natural numbers.. but this function is also able to handle negative numbers.. I 
